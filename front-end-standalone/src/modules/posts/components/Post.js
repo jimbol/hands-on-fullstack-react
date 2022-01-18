@@ -1,6 +1,8 @@
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, Button } from "@mui/material";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { useParams, useNavigate } from "react-router-dom";
+import { postActions } from '../slices';
 
 const getPost = (postId) => (state) => {
   return state.posts.items[postId];
@@ -10,6 +12,9 @@ export const Post = () => {
   const params = useParams();
   const { postId } = params;
   const post = useSelector(getPost(postId));
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
   if (!post) {
     return (
@@ -23,6 +28,21 @@ export const Post = () => {
     <Container>
       <Typography variant="h1">{post.title}</Typography>
       <Typography variant="p">{post.body}</Typography>
+      <div style={{ paddingTop: 24 }}>
+        <Button
+          onClick={() => navigate(`/update-post/${post.id}`)}
+        >
+          Edit
+        </Button>
+        <Button
+          onClick={() => {
+            dispatch(postActions.removePost({ id: post.id }));
+            navigate('/');
+          }}
+        >
+          Delete
+        </Button>
+      </div>
     </Container>
   );
 }

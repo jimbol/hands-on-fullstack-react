@@ -8,6 +8,7 @@ import { Post } from '../../posts';
 const {
   HomePage,
   CreatePost,
+  UpdatePost,
 } = pages;
 
 export const AppRouter = () => {
@@ -15,6 +16,7 @@ export const AppRouter = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/post/:postId" element={<Post />} />
+      <Route path="/update-post/:postId" element={<UpdatePost />} />
       <Route path="/create-post" element={<CreatePost />} />
       <Route
         path="*"

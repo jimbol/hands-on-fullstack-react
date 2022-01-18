@@ -31,6 +31,7 @@ export const postsSlice = createSlice({
       };
     },
     removePost: (state, action) => {
+      console.log(action);
       delete state.items[action.payload.id];
     },
   },
