@@ -1,20 +1,18 @@
 import { TextField, Button, Container, Typography } from '@mui/material';
 import { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from "react-router";
+import { useDispatch } from 'react-redux';
+import { v4 as uuid } from 'uuid';
+import { useNavigate } from "react-router";
 
 import { postActions } from '../slices';
 
-const getPost = (postId) => (state) => {
-  return state.posts.items[postId];
-};
-
-export const EditPost = () => {
-  const params = useParams();
-  const { postId } = params;
-  const post = useSelector(getPost(postId));
+export const CreatePost = () => {
+  const post = {
+    id: uuid(),
+    title: '',
+    body: '',
+  };
   const { id } = post;
-
   const [title, setTitle] = useState(post.title);
   const [body, setBody] = useState(post.body);
   const dispatch = useDispatch();

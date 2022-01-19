@@ -1,9 +1,9 @@
 import { TextField, Button, Container, Typography } from '@mui/material';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from "react-router";
 
-import { postActions } from '../slices';
+import { updatePost } from "../requests/updatePost";
 
 const getPost = (postId) => (state) => {
   return state.posts.items[postId];
@@ -13,28 +13,44 @@ export const EditPost = () => {
   const params = useParams();
   const { postId } = params;
   const post = useSelector(getPost(postId));
-  const { id } = post;
 
-  const [title, setTitle] = useState(post.title);
-  const [body, setBody] = useState(post.body);
+  const [initialized, setInitialization] = useState(false);
+  const [title, setTitle] = useState(post ? post.title : '');
+  const [body, setBody] = useState(post ? post.body : '');
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (initialized) return false;
+    if (!post) {
+      navigate(`/post/${postId}`)
+    }
+    setInitialization(true);
+  }, [post, initialized, setInitialization, postId, navigate]);
+
   const savePost = () => {
-    dispatch(postActions.addPosts([{
-      id,
+    dispatch(updatePost({
       title,
       body,
-    }]));
+      id: postId,
+    }));
     setTitle('');
     setBody('');
-    navigate(`/post/${id}`);
+    navigate(`/post/${postId}`);
+  }
+
+  if (!post) {
+    return (
+      <Container>
+        <h2>That post doesn't exist.</h2>
+      </Container>
+    );
   }
 
   return (
     <Container style={{ display: 'flex', flexDirection: 'column' }}>
       <Typography variant="h1">Edit Post</Typography>
-
       <TextField
         value={title}
         placeholder="Title"

@@ -6,7 +6,7 @@ const getPosts = (state) => {
   return Object.values(state.posts.items);
 };
 
-export const HomePage = () => {
+export const Home = () => {
   const latestPosts = useSelector(getPosts);
 
   return (

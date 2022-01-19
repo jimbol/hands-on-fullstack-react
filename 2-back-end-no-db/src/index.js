@@ -11,5 +11,7 @@ Object.values(routes).forEach((route) => {
   app[route.method](route.path, route.handler);
 });
 
+app.get('/test', (req, res) => res.status(200).send({ tested: true }));
+
 app.listen(port);
 console.log(`Express started on port ${port}`);
