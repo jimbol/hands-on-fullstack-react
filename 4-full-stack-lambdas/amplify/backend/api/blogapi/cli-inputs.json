@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/api": {
+      "name": "/api",
+      "lambdaFunction": "blogapi",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

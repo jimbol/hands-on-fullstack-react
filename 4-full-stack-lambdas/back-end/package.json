@@ -5,15 +5,24 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "build": "yarn install && babel src -d ../amplify/backend/function/blogapi/src/lib && cp index.js ../amplify/backend/function/blogapi/src/index.js&& cp -r node_modules ../amplify/backend/function/blogapi/src/node_modules",
     "start": "nodemon --es-module-specifier-resolution=node src/index.js",
     "server": "pm2 start \"node --es-module-specifier-resolution=node src/index.js\"",
     "restart": "pm2 restart index",
     "kill": "pm2 delete index"
   },
   "dependencies": {
+    "aws-serverless-express": "^3.4.0",
+    "core-js": "^3.20.3",
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "mongodb": "^4.3.0",
+    "regenerator-runtime": "^0.13.9",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.10",
+    "@babel/preset-env": "^7.16.11"
   }
 }

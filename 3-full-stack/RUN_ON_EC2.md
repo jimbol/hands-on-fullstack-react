@@ -68,7 +68,7 @@ gpgcheck=1
 enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-5.0.asc
 ```
-
+(Type `:wq` and press enter to save)
 
 Then install
 ```
@@ -85,6 +85,10 @@ sudo systemctl start mongod
 
 ### Pull repository
 Install git and clone our repository on the server.
+```
+sudo yum install git -y
+git clone your-repo
+```
 
 ### Install Dependencies
 Run the install script. In this repo, that lives inside the `full-stack` folder. Be sure to read `install.sh` to understand what is being installed. This project uses an older version of Node, Node 12, you may need to update the `install.sh` to match the version of Node you are using locally.
@@ -93,7 +97,9 @@ Run the install script. In this repo, that lives inside the `full-stack` folder.
 cd full-stack;
 bash install.sh;
 ```
-This installs Git, Node, and Yarn, as well as installing our application dependencies on the front- and back-end.
+This installs Node, and Yarn, as well as installing our application dependencies on the front- and back-end.
+
+**NVM, Node, and NPM wont be available until you disconnect and reconnect.**
 
 ### Starting
 We'll start the server using pm2. pm2 is a tool to manage running production applications. Our application is set up to run on port 5000.
@@ -103,6 +109,8 @@ pm2 start "node --es-module-specifier-resolution=node src/index.js";
 ```
 
 I have included a script in the `back-end/package.json` to run this. So you can run `yarn server` instead of all the above code.
+
+The server is running, but won't be accessible until we route port 5000 through port 80. Read on!
 
 #### Routing
 Set up routing of traffic from port 80 to port 5000. Port 80 is a special port for http requests that allows us to not specify a port in the url. I.e. Instead of having to visit `ec2-XXXXX.REGION.com:5000/test` we can visit `ec2-XXXXX.REGION.com/test`.
@@ -122,7 +130,7 @@ If your have multiple routes for the same port, you'll potentially have issues. 
 ---
 ## All set!
 
-Now we should be able to hit our application at. `http://ec2-ADDRESS.REGION.compute.amazonaws.com`.
+Now we should be able to hit our application at. `http://ec2-ADDRESS.REGION.compute.amazonaws.com`. We have not set up SSH so be sure to use `http` instead of `https`.
 
 And we should be able to hit our API. `http://ec2-ADDRESS.REGION.compute.amazonaws.com/test`
 
