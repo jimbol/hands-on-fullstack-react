@@ -162,35 +162,43 @@ net:
 ```
 - Finally lets restart mongo `sudo service mongod restart`
 - Get the public IP address of the mongodb instance from the AWS Console
-- We can test by connecting with the following `mongo -u admin -p VCNXRA7dhgzekFmKuYmcoQwD PUBLIC_IP_ADDRESS/blog`
+- We can test by connecting with the following `mongo -u admin -p VCNXRA7dhgzekFmKuYmcoQwD! PUBLIC_IP_ADDRESS/blog`
 
 ### Connect to Mongo from API
-- Update the API to use the Production database
+- Update the API to use the Production database, run locally, and test. It should work
+- Run `amplify push` and test in Production. It should work
 
-## Initialize Amplify in React
-Install the React UI Dependencies
+### Secrets
+- We dont want to store our user and password in source control. AWS Amplify lets us add secres
+- Update the function
 ```
-npm install aws-amplify @aws-amplify/ui-react
+amplify update function
 ```
-
-Inside your main React file, include the following code:
+- Select the function you want to edit
+- Select "Secret values configuration" and follow the prompts to store the username and password
+- Include these environment variables in the code with
+```es6
+const DB_URL = `mongodb://${process.env.dbuser}:${process.env.dbpass}@3.17.147.6/blog`;
 ```
-import Amplify from "aws-amplify";
-import awsExports from "./aws-exports";
-
-Amplify.configure(awsExports);
+- You can run locally like so
 ```
-
-## Setting Amplify Studio up
-Start by running
-```
-amplify console
+dbuser=blog dbpass=VCNXRA7dhgzekFmKuYmcoQwD! yarn start
 ```
 
-Select the "Console" option, this will open the AWS Console with the Amplify project showing. Here you can enable the Amplify Studio for this project.
-
-Once enabled, you can use the interface to invite users to the Amplify Studio project.
-
-# Data
-## Create data models
-Inside Amplify Studio, we can create the Data Models that populate our application. Its a nice GUI
+## Connect Front-End
+Lets update the front end to connect. Inside the api file, update the base path like so:
+```
+const basePath = `${process.env.REACT_APP_API_PATH}/api`;
+```
+React Scripts will look for the environment values preceeded with `REACT_APP` and include them in the project. In our package.json we can include the env variable like so:
+```
+"start": "REACT_APP_API_PATH=\"http://localhost:5000\" react-scripts start",
+```
+Next, look up the url for the lambda functions. For me it was `https://yv6aggdnz6.execute-api.us-east-2.amazonaws.com/dev`. Lets add a new command to use that url locally.
+```
+"start:prod": "REACT_APP_API_PATH=\"https://yv6aggdnz6.execute-api.us-east-2.amazonaws.com/dev\" react-scripts start",
+```
+Finally we need to include the variable in the build script.
+```
+"build": "REACT_APP_API_PATH=\"https://yv6aggdnz6.execute-api.us-east-2.amazonaws.com/dev/api/\" react-scripts build",
+```

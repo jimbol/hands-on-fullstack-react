@@ -1,3 +1,7 @@
 {
-  "lambdaLayers": []
+  "lambdaLayers": [],
+  "secretNames": [
+    "dbuser",
+    "dbpass"
+  ]
 }

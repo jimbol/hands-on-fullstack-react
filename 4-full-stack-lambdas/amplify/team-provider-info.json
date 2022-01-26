@@ -19,7 +19,8 @@
         },
         "blogapi": {
           "deploymentBucketName": "amplify-4fullstacklambdas-dev-151705-deployment",
-          "s3Key": "amplify-builds/blogapi-497a55336d5471503275-build.zip"
+          "s3Key": "amplify-builds/blogapi-497a55336d5471503275-build.zip",
+          "secretsPathAmplifyAppId": "d2b1ud59wgz9pu"
         }
       }
     }

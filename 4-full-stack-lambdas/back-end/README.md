@@ -1,5 +1,5 @@
 # Back-end with no database
-This folder implements our Blog api without any database. Instead data is stored in memory.
+This folder implements our Blog api with a mongo database stored on EC2
 
 ## Installation
 ### `yarn install`
@@ -19,9 +19,7 @@ The `start-dev` script in `package.json` uses Nodemon to keep the local environm
 ```npm install --global nodemon```
 
 ## Practice
-Challenge yourself by trying to create your own back-end.
+Challenge yourself by creating your own lambdas.
 
-- Create Express server
-- Use Postman to test endpoints
-- Add routes
-- Update the in-memory data within the route handlers
+- Move you api to lambdas
+- Connect your lambdas to your Database

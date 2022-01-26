@@ -1,4 +1,4 @@
-const basePath = '/api';
+const basePath = `${process.env.REACT_APP_API_PATH}/api`;
 
 export const API = async(method, path, payload) => {
   const url = `${basePath}${path}`;
