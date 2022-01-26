@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { useParams, useNavigate } from "react-router-dom";
-import { postActions } from '../slices';
 import { fetchPost } from "../requests/fetchPost";
 import { deletePost } from "../requests/deletePost";
 

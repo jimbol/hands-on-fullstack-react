@@ -234,3 +234,6 @@ Finally we need to include the variable in the build script.
 ```
 "build": "REACT_APP_API_PATH=\"https://yv6aggdnz6.execute-api.us-east-2.amazonaws.com/dev/api/\" react-scripts build",
 ```
+
+## Deploy to Netlify
+Create a free Netlify account and follow the instructions to set up a project from Github.
