@@ -12,7 +12,7 @@ If you're following along with the tutorial you will have a `front-end` and `bac
 
 ```
 /
-  /backend
+  /back-end
   /public
   /src
   package.json
@@ -93,7 +93,6 @@ const { app } = require('./lib');
 const server = awsServerlessExpress.createServer(app);
 
 exports.handler = (event, context) => {
-  console.log(`handler called`);
   console.log(`EVENT: ${JSON.stringify(event)}`);
   return awsServerlessExpress.proxy(server, event, context, 'PROMISE').promise;
 };
@@ -165,7 +164,40 @@ net:
 - We can test by connecting with the following `mongo -u admin -p VCNXRA7dhgzekFmKuYmcoQwD! PUBLIC_IP_ADDRESS/blog`
 
 ### Connect to Mongo from API
+- I chose to move the DB connection logic to the where the API handlers are initialized because Lambda may relaunch the express app with each request and the previous approach assumed that we had a long-running server. This is a difference between traditional web-servers and serverless applications.
+```diff
+--Object.values(routes).forEach((route) => {
+--  console.log(route);
+--  app[route.method](`/api${route.path}`, route.handler);
+--});
+++Object.values(routes).forEach((route) => {
+++  console.log(route);
+++  app[route.method](`/api${route.path}`, (...args) => {
+++
+++    const connectDB = async () => {
+++      await db.connect(DB_URL);
+++      return route.handler(...args);
+++    };
+++
+++    return connectDB();
+++  });
+++});
+
+--const start = async () => {
+--  await db.connect(DB_URL);
+--  app.listen(port);
+--  console.log(`Express started on port ${port}`);
+--};
+
+--start();
+++app.listen(port, () => {
+++  console.log(`Express started on port ${port}`);
+++});
+```
 - Update the API to use the Production database, run locally, and test. It should work
+```es6
+const DB_URL = `mongodb://MONGO_USER:MONGO_PASSWORD@3.17.147.6/blog`;
+```
 - Run `amplify push` and test in Production. It should work
 
 ### Secrets
@@ -175,7 +207,7 @@ net:
 amplify update function
 ```
 - Select the function you want to edit
-- Select "Secret values configuration" and follow the prompts to store the username and password
+- Select "Secret values configuration" and follow the prompts to store the username and password. These are stored secretly in AWS and get passed as evironment variables when the lambdas run.
 - Include these environment variables in the code with
 ```es6
 const DB_URL = `mongodb://${process.env.dbuser}:${process.env.dbpass}@3.17.147.6/blog`;
