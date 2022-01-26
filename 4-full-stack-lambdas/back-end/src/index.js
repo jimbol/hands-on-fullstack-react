@@ -3,7 +3,6 @@ import * as routes from './routes';
 import * as db from './db/connect';
 import cors from 'cors';
 
-// const DB_URL = 'mongodb://ec2-user@ec2-18-216-169-124.us-east-2.compute.amazonaws.com:27017';
 const DB_URL = `mongodb://${process.env.dbuser}:${process.env.dbpass}@3.17.147.6/blog`;
 const app = express();
 const port = 5000;
