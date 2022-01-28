@@ -18,6 +18,10 @@ export const Navigation = () => {
       </Typography>
       <div>
         <Button
+          onClick={() => navigate('/auth')}
+        >Sign In/Sign Up</Button>
+        &nbsp;
+        <Button
           onClick={() => navigate('/')}
           variant="contained"
         >Posts</Button>

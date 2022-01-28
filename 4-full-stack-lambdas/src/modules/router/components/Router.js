@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import * as pages from '../../pages';
 import { Post, CreatePost, EditPost } from '../../posts';
+import { Auth } from '../../auth';
 
 const {
   Home,
@@ -16,6 +17,7 @@ export const AppRouter = () => {
       <Route path="/post/:postId" element={<Post />} />
       <Route path="/update-post/:postId" element={<EditPost />} />
       <Route path="/create-post" element={<CreatePost />} />
+      <Route path="/auth" element={<Auth />} />
       <Route
         path="*"
         element={

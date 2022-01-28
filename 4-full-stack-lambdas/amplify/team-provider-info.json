@@ -23,6 +23,9 @@
           "secretsPathAmplifyAppId": "d2b1ud59wgz9pu",
           "client": "https://pedantic-einstein-848446.netlify.app"
         }
+      },
+      "auth": {
+        "4fullstacklambdascc18ef0c": {}
       }
     }
   }

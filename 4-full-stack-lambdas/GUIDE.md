@@ -261,3 +261,109 @@ Create a file in the `/public` directory called `_redirects` and populate it wit
 This tells Netlify to take all traffic (`/*`) and route it to `index.html` with a status code of 200.
 
 Push the changes, let Netlify deploy, and test. It should work!
+
+
+# Add Auth
+## Auth Goals
+- Allow anyone to SEE posts
+- Only authed people can add, edit, delete posts
+- If the user isnt signed in, show sign in button. Otherwise show the create post buttons.
+
+## Add auth in amplify
+Install the most basic auth installation
+```
+amplify add auth
+```
+
+And deploy!
+```
+amplify push
+```
+
+Yes its really that easy to set up the auth infrastructure!
+
+## Add auth in our app
+First, add the auth configuration in `App.js`
+```es6
+import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+
+Amplify.configure(awsconfig);
+```
+
+Then we're going to add a route to a login page and put the authorization UI provided by amplify
+
+In the navigation
+```es6
+<Button
+  onClick={() => navigate('/auth')}
+>Sign In/Sign Up</Button>
+```
+In the router
+```es6
+<Route path="/auth" element={<Auth />} />
+```
+
+Now lets add this new auth page
+```es6
+import '@aws-amplify/ui-react/styles.css';
+
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import { useDispatch } from 'react-redux';
+
+import { userActions } from '../slices';
+import { useNavigate } from 'react-router-dom';
+import { Typography } from '@mui/material';
+import { useEffect } from 'react';
+
+function Auth({ user }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      // when logged in dispatch an action to store the user
+      dispatch(userActions.signIn(user));
+      navigate('/');
+    }
+  });
+
+  // This will show briefly when logged in
+  return (
+    <Typography>Authenticated</Typography>
+  );
+}
+
+export default withAuthenticator(Auth);
+
+```
+
+The `withAuthenticator` function wraps a component in an authenticator. So this component will only show once passing authentication.
+
+We're dispatching a `signIn` action to a `users` reducer that we havent created yet. When a user signs in, set the user in Redux, and then route home.
+
+Now lets add the user slice. Super basic slice here.
+```es6
+import { createSlice } from "@reduxjs/toolkit"
+
+const initialState = null;
+
+export const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    signIn: (state, action) => action.payload,
+    signOut: () => null,
+  },
+});
+
+export const userActions = userSlice.actions;
+export const user = userSlice.reducer;
+```
+## Document DB
+AWS offers a scalable database that implements a very similary database to Mongo, its called Document DB. It seems like a natural fit for our application but we're not going to use it today for a few reasons.
+
+- It is expensive. You must allocate servers that run continuously.
+- It doesn't auto-scale. You have to manually scale when in need.
+- It requires that we set up an entire networking environment.
+
