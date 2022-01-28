@@ -291,7 +291,16 @@ import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
 ```
 
-Then we're going to add a route to a login page and put the authorization UI provided by amplify
+Then for demonstration purposes lets wrapp our App in authentication.
+
+```es6
+import { withAuthenticator } from '@aws-amplify/ui-react';
+//...
+export default withAuthenticator(App);
+```
+This will add auth to the entire application. Thats not quite what we want though. I want a sign in/up UI.
+
+So now we're going to add a route to a login page and put the authorization UI provided by amplify
 
 In the navigation
 ```es6
@@ -340,7 +349,7 @@ export default withAuthenticator(Auth);
 
 The `withAuthenticator` function wraps a component in an authenticator. So this component will only show once passing authentication.
 
-We're dispatching a `signIn` action to a `users` reducer that we havent created yet. When a user signs in, set the user in Redux, and then route home.
+We're dispatching a `signIn` action to a `user` reducer that we havent created yet. When a user signs in, set the user in Redux, and then route home.
 
 Now lets add the user slice. Super basic slice here.
 ```es6
@@ -360,6 +369,54 @@ export const userSlice = createSlice({
 export const userActions = userSlice.actions;
 export const user = userSlice.reducer;
 ```
+
+Next, we need to check if the user is authed whenever they access a route. So inside the route, we can add the following:
+```es6
+import { Auth } from 'aws-amplify';
+
+// ...
+
+useEffect(() => {
+  const checkUser = async () => {
+    const user = await Auth.currentAuthenticatedUser();
+    if (!user) return;
+    const { username } = user;
+    dispatch(userActions.signIn({
+      username,
+    }));
+  }
+
+  checkUser();
+});
+```
+
+Now we can ensure that the user state is always up to date.
+
+So lets hide and show some UI based on that. We'll show a sign out button when logged in.
+Navagation.js
+```es6
+const user = useSelector(getUser);
+  const dispatch = useDispatch();
+
+  const signOut = async () => {
+    await Auth.signOut();
+    dispatch(userActions.signOut());
+    navigate('/');
+  };
+
+  // ...
+  // in the component tree
+  {user ? (
+    <Button
+      onClick={() => signOut()}
+    >Sign out</Button>
+  ) : (
+    <Button
+      onClick={() => navigate('/auth')}
+    >Sign In/Sign Up</Button>
+  )}
+```
+
 ## Document DB
 AWS offers a scalable database that implements a very similary database to Mongo, its called Document DB. It seems like a natural fit for our application but we're not going to use it today for a few reasons.
 
