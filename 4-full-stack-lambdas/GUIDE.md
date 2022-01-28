@@ -170,16 +170,19 @@ net:
 --  console.log(route);
 --  app[route.method](`/api${route.path}`, route.handler);
 --});
-++const setUpRoutes = async () => {
-++  await db.connect();
-++
-++  Object.values(routes).forEach((route) => {
-++    console.log(route);
-++    app[route.method](`/api${route.path}`, route.handler);
-++  });
-++}
 
-setUpRoutes();
+++Object.values(routes).forEach((route) => {
+++  console.log(route);
+++  app[route.method](`/api${route.path}`, (...args) => {
+++
+++    const connectDB = async () => {
+++      await db.connect();
+++      return route.handler(...args);
+++    };
+++
+++    return connectDB();
+++  });
+++});
 
 --const start = async () => {
 --  await db.connect(DB_URL);
@@ -235,12 +238,26 @@ Finally we need to include the variable in the build script.
 ```
 
 ## Deploy to Netlify
-Create a free Netlify account and follow the instructions to set up a project from Github.
+### 1. Deploy to Netlify
+Create a free Netlify account and follow the instructions to set up a project from Github. Its super easy.
 
-There are a couple changes we will have to make.
+There are a couple changes we will have to make once deployed.
 
-1. Add the Netlify to the CORS section of the back-end
+### 2. Add the Netlify to the CORS section of the back-end
 ```
 amplify update function
 ```
 Select the function you want to edit, and the select that you want to add an evironment variable. We will call it `client` and the value will be the Netlify app url.
+
+Deploy and visit your Netlify site. API requests should work
+
+### 3. Redirects
+Right now visiting a sub-route such as `/create-post` will show a 404 page. This is because our application is a "single page web application" and Netlify is looking for an actual html file at that route. We need to tell Netlify that all routes should be routed to `index.html`
+
+Create a file in the `/public` directory called `_redirects` and populate it with the following.
+```
+/* /index.html 200
+```
+This tells Netlify to take all traffic (`/*`) and route it to `index.html` with a status code of 200.
+
+Push the changes, let Netlify deploy, and test. It should work!
