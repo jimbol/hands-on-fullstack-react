@@ -1,12 +1,27 @@
 import { MongoClient } from 'mongodb';
+import aws from 'aws-sdk';
 
 let dbClient = null;
 
-export const connect = async (url) => {
+export const connect = async () => {
   if (dbClient) {
     return dbClient;
   }
 
+  const result = await (new aws.SSM())
+    .getParameters({
+      Names: ["dbuser", "dbpass"].map(secretName => process.env[secretName]),
+      WithDecryption: true,
+    })
+    .promise();
+
+  console.log('secrets');
+  console.log(result);
+  const { Parameters } = result;
+  const dbuser = (Parameters.find(({ Name }) => Name === process.env.dbuser) || {}).Value || process.env.dbuser;
+  const dbpass = (Parameters.find(({ Name }) => Name === process.env.dbpass) || {}).Value || process.env.dbpass;
+
+  const url = `mongodb://${dbuser}:${dbpass}@3.17.147.6/blog`;
   try {
     console.log(`Connecting to mongo db at ${url}`);
     const client = await MongoClient.connect(url, {
@@ -19,6 +34,7 @@ export const connect = async (url) => {
     return dbClient;
   } catch(e) {
     console.log(e);
+    dbClient = null;
   }
 
 };

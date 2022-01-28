@@ -12,6 +12,7 @@
     "kill": "pm2 delete index"
   },
   "dependencies": {
+    "aws-sdk": "^2.1064.0",
     "aws-serverless-express": "^3.4.0",
     "core-js": "^3.20.3",
     "cors": "^2.8.5",

@@ -18,6 +18,9 @@
     },
     "secretsPathAmplifyAppId": {
       "Type": "String"
+    },
+    "client": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -116,6 +119,31 @@
                   "dbpass"
                 ]
               ]
+            },
+            "allowed_client": {
+              "Fn::Join": [
+                "",
+                [
+                  {
+                    "Fn::Sub": [
+                      "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
+                      {
+                        "appId": {
+                          "Ref": "secretsPathAmplifyAppId"
+                        },
+                        "env": {
+                          "Ref": "env"
+                        },
+                        "functionName": "blogapi"
+                      }
+                    ]
+                  },
+                  "allowed_client"
+                ]
+              ]
+            },
+            "client": {
+              "Ref": "client"
             }
           }
         },

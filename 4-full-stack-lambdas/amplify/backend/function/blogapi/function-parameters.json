@@ -2,6 +2,13 @@
   "lambdaLayers": [],
   "secretNames": [
     "dbuser",
-    "dbpass"
+    "dbpass",
+    "allowed_client"
+  ],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "client",
+      "environmentVariableName": "client"
+    }
   ]
 }

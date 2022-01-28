@@ -170,18 +170,16 @@ net:
 --  console.log(route);
 --  app[route.method](`/api${route.path}`, route.handler);
 --});
-++Object.values(routes).forEach((route) => {
-++  console.log(route);
-++  app[route.method](`/api${route.path}`, (...args) => {
+++const setUpRoutes = async () => {
+++  await db.connect();
 ++
-++    const connectDB = async () => {
-++      await db.connect(DB_URL);
-++      return route.handler(...args);
-++    };
-++
-++    return connectDB();
+++  Object.values(routes).forEach((route) => {
+++    console.log(route);
+++    app[route.method](`/api${route.path}`, route.handler);
 ++  });
-++});
+++}
+
+setUpRoutes();
 
 --const start = async () => {
 --  await db.connect(DB_URL);
@@ -201,7 +199,8 @@ const DB_URL = `mongodb://MONGO_USER:MONGO_PASSWORD@3.17.147.6/blog`;
 - Run `amplify push` and test in Production. It should work
 
 ### Secrets
-- We dont want to store our user and password in source control. AWS Amplify lets us add secres
+- We dont want to store our user and password in source control. AWS Amplify lets us add secrets
+- Install the aws-sdk: `yarn add aws-sdk`
 - Update the function
 ```
 amplify update function
@@ -237,3 +236,11 @@ Finally we need to include the variable in the build script.
 
 ## Deploy to Netlify
 Create a free Netlify account and follow the instructions to set up a project from Github.
+
+There are a couple changes we will have to make.
+
+1. Add the Netlify to the CORS section of the back-end
+```
+amplify update function
+```
+Select the function you want to edit, and the select that you want to add an evironment variable. We will call it `client` and the value will be the Netlify app url.
