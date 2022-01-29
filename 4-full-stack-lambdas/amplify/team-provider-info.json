@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-4fullstacklambdas-dev-151705-unauthRole",
       "StackName": "amplify-4fullstacklambdas-dev-151705",
       "StackId": "arn:aws:cloudformation:us-east-2:425010903010:stack/amplify-4fullstacklambdas-dev-151705/1d975310-7af7-11ec-83cc-0638028f326c",
-      "AmplifyAppId": "d2b1ud59wgz9pu"
+      "AmplifyAppId": "d2b1ud59wgz9pu",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-4fullstacklambdas-dev-151705-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "function": {
@@ -19,7 +20,7 @@
         },
         "blogapi": {
           "deploymentBucketName": "amplify-4fullstacklambdas-dev-151705-deployment",
-          "s3Key": "amplify-builds/blogapi-6259432f427448584758-build.zip",
+          "s3Key": "amplify-builds/blogapi-6b2b79436d5946476756-build.zip",
           "secretsPathAmplifyAppId": "d2b1ud59wgz9pu",
           "client": "https://pedantic-einstein-848446.netlify.app"
         }

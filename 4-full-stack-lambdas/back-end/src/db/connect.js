@@ -21,9 +21,10 @@ export const connect = async () => {
 
     const { Parameters } = result;
 
-    dbuser = Parameters.find(({ Name }) => Name === process.env.dbuser);
-    dbpass = Parameters.find(({ Name }) => Name === process.env.dbpass);
+    dbuser = Parameters.find(({ Name }) => Name === process.env.dbuser).Value;
+    dbpass = Parameters.find(({ Name }) => Name === process.env.dbpass).Value;
   } catch(e) {
+    console.log(e);
     dbuser = process.env.dbuser;
     dbpass = process.env.dbpass;
   }

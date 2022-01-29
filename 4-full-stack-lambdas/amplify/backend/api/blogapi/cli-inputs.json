@@ -7,6 +7,18 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/api/post": {
+      "name": "/api/post",
+      "lambdaFunction": "blogapi",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "update",
+          "delete"
+        ]
+      }
     }
   }
 }

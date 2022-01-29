@@ -282,7 +282,7 @@ amplify push
 
 Yes its really that easy to set up the auth infrastructure!
 
-## Add auth in our app
+## Add auth in our front-end
 First, add the auth configuration in `App.js`
 ```es6
 import Amplify from 'aws-amplify';
@@ -416,6 +416,13 @@ const user = useSelector(getUser);
     >Sign In/Sign Up</Button>
   )}
 ```
+
+You can create custom login flows using their lower level api. [Take a look](https://docs.amplify.aws/guides/authentication/custom-auth-flow/q/platform/js/)!
+
+Using these tools we can hide and show all necessary components on the front-end, but what about securing the API?
+
+## Add auth in our API
+
 
 ## Document DB
 AWS offers a scalable database that implements a very similary database to Mongo, its called Document DB. It seems like a natural fit for our application but we're not going to use it today for a few reasons.
