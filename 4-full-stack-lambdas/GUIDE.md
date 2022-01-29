@@ -237,22 +237,7 @@ Finally we need to include the variable in the build script.
 "build": "REACT_APP_API_PATH=\"https://yv6aggdnz6.execute-api.us-east-2.amazonaws.com/dev/api/\" react-scripts build",
 ```
 
-## Add hosting
-### 1. Add Amplify Hosting
-```amplify hosting add```
-
-In the browser select "Hosting envirnments", select GitHub and grant access to your Github account.
-Select the repo and configure the environment. You will have to create a service role for this process.
-
-### 2. Add the Amplify URL to the CORS section of the back-end
-```
-amplify update function
-```
-Select the function you want to edit, and the select that you want to add an evironment variable. We will call it `client` and the value will be the Amplify app url.
-
-Deploy and visit your Amplify site. API requests should work.
-
-## Deploy to Netlify
+## Add Netlify hosting
 We can deploy to Netlify but run into complications down the line when doing so. Specifically, the aws-exports file needs to be generated at build-time which involves some additional set up. Using Amplify hosting is much easier at that point,.
 ### 1. Deploy to Netlify
 Create a free Netlify account and follow the instructions to set up a project from Github. Its super easy.
@@ -277,7 +262,6 @@ Create a file in the `/public` directory called `_redirects` and populate it wit
 This tells Netlify to take all traffic (`/*`) and route it to `index.html` with a status code of 200.
 
 Push the changes, let Netlify deploy, and test. It should work!
-
 
 # Add Auth
 ## Auth Goals
