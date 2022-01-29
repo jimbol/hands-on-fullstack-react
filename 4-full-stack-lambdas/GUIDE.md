@@ -237,7 +237,23 @@ Finally we need to include the variable in the build script.
 "build": "REACT_APP_API_PATH=\"https://yv6aggdnz6.execute-api.us-east-2.amazonaws.com/dev/api/\" react-scripts build",
 ```
 
+## Add hosting
+### 1. Add Amplify Hosting
+```amplify hosting add```
+
+In the browser select "Hosting envirnments", select GitHub and grant access to your Github account.
+Select the repo and configure the environment. You will have to create a service role for this process.
+
+### 2. Add the Amplify URL to the CORS section of the back-end
+```
+amplify update function
+```
+Select the function you want to edit, and the select that you want to add an evironment variable. We will call it `client` and the value will be the Amplify app url.
+
+Deploy and visit your Amplify site. API requests should work.
+
 ## Deploy to Netlify
+We can deploy to Netlify but run into complications down the line when doing so. Specifically, the aws-exports file needs to be generated at build-time which involves some additional set up. Using Amplify hosting is much easier at that point,.
 ### 1. Deploy to Netlify
 Create a free Netlify account and follow the instructions to set up a project from Github. Its super easy.
 
@@ -422,7 +438,26 @@ You can create custom login flows using their lower level api. [Take a look](htt
 Using these tools we can hide and show all necessary components on the front-end, but what about securing the API?
 
 ## Add auth in our API
+We're going to add an authenticated path to the API. Amplify gives the ability to do this!
+```
+amplify add api
+```
+Pick REST
+Next, select "Y" to add a new path to an existing API
+Select "Add another path".
+Provide the path to add auth to. `/api/post`
+Pick the Lambda source we have already created, it will use the same express app.
+Select "Authenticated users only" for who should have access to those routes.
+Next, use the spacebar to select create, update, and delete. Only authed users should be able to do that function.
 
+Now we need to add another route to allow fetching indivitual records.
+Provide the path: `/api/post/get/{postid}`
+Use the same lambda fn.
+This time for "Restrict API access? (Y/n)" select "N".
+
+That path doesn't exist in our application yet so be sure to update the API path and path in the front end.
+
+Now deploy with `amplify push` and view the results in the [API Gateway UI](https://us-east-2.console.aws.amazon.com/apigateway/home?region=us-east-2).
 
 ## Document DB
 AWS offers a scalable database that implements a very similary database to Mongo, its called Document DB. It seems like a natural fit for our application but we're not going to use it today for a few reasons.
