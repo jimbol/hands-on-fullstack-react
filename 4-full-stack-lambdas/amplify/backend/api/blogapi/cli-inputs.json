@@ -19,6 +19,13 @@
           "delete"
         ]
       }
+    },
+    "/api/post/get": {
+      "name": "/api/post/get",
+      "lambdaFunction": "blogapi",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }
