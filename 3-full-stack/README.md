@@ -1,5 +1,5 @@
 # Complete Full-Stack Project
-This folder contains our complete full-stack Q&A application.
+This folder contains our complete full-stack blog application.
 
 ## Practice
 This portion of the repository includes the Mongo database and stitches together the front-end, back-end, and database.

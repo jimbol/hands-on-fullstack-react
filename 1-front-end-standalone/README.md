@@ -35,15 +35,6 @@ Designing datastructures is a key part of software engineering. Take time to con
 I'll use typescript to lay out the data structures. I like Typescript for this because its explicit and can be used if you start using Typescript.
 
 ```es6
-interface User {
-  id: string;
-  owner: boolean; // Is this user an owner of this blog? Y or N
-
-  // Blog owners or other users may all need usernames,
-  // both for authenticating and, down the road, commenting
-  username: string;
-}
-
 interface Post {
   id: string;
   title: string;
@@ -56,4 +47,10 @@ interface Post {
   // If we want to add tags
   tags: string[]; // string[] indicates a list of strings.
 }
+
+interface User {
+  id: string;
+  username: string;
+}
+
 ```

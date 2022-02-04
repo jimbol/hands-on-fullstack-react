@@ -443,6 +443,16 @@ That path doesn't exist in our application yet so be sure to update the API path
 
 Now deploy with `amplify push` and view the results in the [API Gateway UI](https://us-east-2.console.aws.amazon.com/apigateway/home?region=us-east-2).
 
+### Publishing to Netlify
+We have to include `src/aws-exports.js` in the repository because it is require to configure auth. This file is ignored due to issues running multiple environments. For our example we just have a single env, so we can include it. All the data in the config is available on the client, no secret information is included.
+
+Comment out `aws-exports.js` from `.gitignore`, commit, and push to github.
+
+## Post confirmation hook
+`amplify update auth`
+https://blog.arturofm.com/amplify-add-user-to-dynamodb-using-a-cognito-post-confirmation-lambda-trigger/
+
+# Creating a scalable database
 ## Document DB
 AWS offers a scalable database that implements a very similary database to Mongo, its called Document DB. It seems like a natural fit for our application but we're not going to use it today for a few reasons.
 
@@ -450,3 +460,5 @@ AWS offers a scalable database that implements a very similary database to Mongo
 - It doesn't auto-scale. You have to manually scale when in need.
 - It requires that we set up an entire networking environment.
 
+## Dynamo DB
+DynamoDB is the main document-style database offered by AWS. Its super fast, super cheap, scales automatically, and doesnt require the maintainence of any servers. Lets see how we can add Dynamo DB to the project.

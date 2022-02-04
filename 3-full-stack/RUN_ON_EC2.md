@@ -18,6 +18,7 @@ We will host the front-end, back-end, and mongo db on an EC2 instance. This guid
 ### Provide permission for ssh and web requests
 
 - Click "Edit Security Groups"
+- A SSH rule should already exist.
 - Add a "HTTP" security rule allowing http access.
 
 ### Launch and get ssh key

@@ -1,5 +1,5 @@
 # Back-end with no database
-This folder implements our Q&A api without any database. Instead data is stored in memory.
+This folder implements our blog api without any database. Instead data is stored in memory.
 
 ## Installation
 ### `yarn install`

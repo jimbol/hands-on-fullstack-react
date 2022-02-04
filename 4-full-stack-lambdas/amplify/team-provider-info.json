@@ -20,9 +20,9 @@
         },
         "blogapi": {
           "deploymentBucketName": "amplify-4fullstacklambdas-dev-151705-deployment",
-          "s3Key": "amplify-builds/blogapi-7270706a71594f4a5a4e-build.zip",
+          "s3Key": "amplify-builds/blogapi-6f336d785237654c5275-build.zip",
           "secretsPathAmplifyAppId": "d2b1ud59wgz9pu",
-          "client": "https://pedantic-einstein-848446.netlify.app/"
+          "client": "https://pedantic-einstein-848446.netlify.app"
         }
       },
       "auth": {
