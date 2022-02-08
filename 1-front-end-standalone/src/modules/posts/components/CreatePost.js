@@ -13,8 +13,10 @@ export const CreatePost = () => {
     body: '',
   };
   const { id } = post;
+
   const [title, setTitle] = useState(post.title);
   const [body, setBody] = useState(post.body);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,6 +26,7 @@ export const CreatePost = () => {
       title,
       body,
     }]));
+
     setTitle('');
     setBody('');
     navigate(`/post/${id}`);
@@ -31,7 +34,7 @@ export const CreatePost = () => {
 
   return (
     <Container style={{ display: 'flex', flexDirection: 'column' }}>
-      <Typography variant="h1">Edit Post</Typography>
+      <Typography variant="h1">Create Post</Typography>
 
       <TextField
         value={title}

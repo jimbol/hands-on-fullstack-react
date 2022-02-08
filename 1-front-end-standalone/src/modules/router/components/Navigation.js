@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 
 export const Navigation = () => {
   const navigate = useNavigate();
+
   return (
     <Toolbar style={{ justifyContent: 'space-between' }}>
       <Typography

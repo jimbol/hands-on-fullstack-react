@@ -1,6 +1,5 @@
 import { Container, Typography, Button } from "@mui/material";
-import { useSelector } from "react-redux";
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from "react-router-dom";
 import { postActions } from '../slices';
 

@@ -36,14 +36,14 @@ export const postsSlice = createSlice({
     removePost,
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchPosts.fulfilled, addPosts);
+    builder.addCase(fetchPosts.pending, setLoading);
+
     builder.addCase(updatePost.fulfilled, addPosts);
     builder.addCase(updatePost.pending, setLoading);
 
     builder.addCase(fetchPost.fulfilled, addPosts);
     builder.addCase(fetchPost.pending, setLoading);
-
-    builder.addCase(fetchPosts.fulfilled, addPosts);
-    builder.addCase(fetchPosts.pending, setLoading);
 
     builder.addCase(deletePost.fulfilled, removePost);
     builder.addCase(deletePost.pending, setLoading);

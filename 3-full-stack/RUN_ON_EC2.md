@@ -88,14 +88,14 @@ sudo systemctl start mongod
 Install git and clone our repository on the server.
 ```
 sudo yum install git -y
-git clone your-repo
+git clone YOUR_REPO
 ```
 
 ### Install Dependencies
 Run the install script. In this repo, that lives inside the `full-stack` folder. Be sure to read `install.sh` to understand what is being installed. This project uses an older version of Node, Node 12, you may need to update the `install.sh` to match the version of Node you are using locally.
 
 ```
-cd full-stack;
+cd 3-full-stack;
 bash install.sh;
 ```
 This installs Node, and Yarn, as well as installing our application dependencies on the front- and back-end.
@@ -103,10 +103,16 @@ This installs Node, and Yarn, as well as installing our application dependencies
 **NVM, Node, and NPM wont be available until you disconnect and reconnect.**
 
 ### Starting
-We'll start the server using pm2. pm2 is a tool to manage running production applications. Our application is set up to run on port 5000.
+First, go into the front-end folder and build the project. The build folder gets served by the API as static resources.
 ```
-cd back-end;
-pm2 start "node --es-module-specifier-resolution=node src/index.js";
+cd front-end
+yarn build
+```
+
+Next, we'll start the server using pm2. pm2 is a tool to manage running production applications. Our application is set up to run on port 5000.
+```
+cd back-end
+pm2 start "node --es-module-specifier-resolution=node src/index.js"
 ```
 
 I have included a script in the `back-end/package.json` to run this. So you can run `yarn server` instead of all the above code.
