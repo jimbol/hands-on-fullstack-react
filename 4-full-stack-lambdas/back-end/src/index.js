@@ -6,14 +6,15 @@ import cors from 'cors';
 const app = express();
 const port = 5000;
 app.use(express.json());
-console.log(process.env);
 app.use(cors({
-  origin: process.env.client || 'http://localhost:3000',
+  origin: 'http://localhost:3000', // switch when pointing towards netlify
+  // origin: process.env.client || 'http://localhost:3000',
 }));
 
 
 Object.values(routes).forEach((route) => {
   console.log(route);
+
   app[route.method](`/api${route.path}`, (...args) => {
 
     const connectDB = async () => {

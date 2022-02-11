@@ -26,6 +26,9 @@ app.get('/*', function(req, res) {
 const basePath = '/api';
 ```
 
+[Next Steps](RUN_ON_EC2.md) - Deploy application to EC2
+
+
 ## Practice
 This portion of the repository includes the Mongo database and stitches together the front-end, back-end, and database.
 

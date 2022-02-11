@@ -139,5 +139,6 @@ If your have multiple routes for the same port, you'll potentially have issues. 
 
 Now we should be able to hit our application at. `http://ec2-ADDRESS.REGION.compute.amazonaws.com`. We have not set up SSH so be sure to use `http` instead of `https`.
 
-And we should be able to hit our API. `http://ec2-ADDRESS.REGION.compute.amazonaws.com/test`
+And we should be able to hit our API. `http://ec2-ADDRESS.REGION.compute.amazonaws.com/api/test`
 
+[Next Steps](../4-full-stack-lambdas/LAMBDA_API.md) - Deploy API to Lambdas for scalability

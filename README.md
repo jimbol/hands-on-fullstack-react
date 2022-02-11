@@ -20,6 +20,7 @@ In this lesson we will deploy our application to EC2, then we will make our API 
 - [3-full-stack](3-full-stack) - Prepare application to run in EC2
 - [3-full-stack/RUN_ON_EC2.md](3-full-stack/RUN_ON_EC2.md) - Deploy application to EC2
 - [4-full-stack-lambdas/LAMBDA_API.md](4-full-stack-lambdas/LAMBDA_API.md) - Deploy API to Lambdas for scalability
+- [4-full-stack-lambdas/NETLIFY_HOSTING.md](4-full-stack-lambdas/NETLIFY_HOSTING.md) - Deploy front-end to Netlify
 
 ## Week 3
 Week 3 information will be added before the third lesson.

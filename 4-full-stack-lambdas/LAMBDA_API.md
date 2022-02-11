@@ -108,7 +108,7 @@ Lambdas do not handle ES6 imports very well by default. We need to include Babel
   "presets": ["@babel/preset-env"]
 }
 ```
-- Add the following to the `scripts` block of our `package.json`
+- Add the following to the `scripts` block of our `back-end/package.json`
 ```
   "build": "babel src -d lib"
 ```
@@ -127,8 +127,9 @@ Lambdas do not handle ES6 imports very well by default. We need to include Babel
 - `curl https://YOUR_ID.execute-api.us-east-2.amazonaws.com/dev/api/test`
 - If errors arise, we can see them logged on [Cloudwatch](https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#logsV2:log-groups).
 
-## Allow database connections
+## Allow database connectionsy
 ### Configure security group
+- View your EC2 instance in the AWS Console
 - Modify the inbound rules. Add a Custom TCP rule to port `27017` (MongoDB's port) from `0.0.0.0/0` (the internet). This will open the database to the internet so lets add another level of security
 
 ### Add admin user
@@ -236,3 +237,5 @@ Finally we need to include the variable in the build script.
 ```
 "build": "REACT_APP_API_PATH=\"https://yv6aggdnz6.execute-api.us-east-2.amazonaws.com/dev/api/\" react-scripts build",
 ```
+
+[Next Steps](NETLIFY_HOSTING.md) - Deploy front-end to Netlify
