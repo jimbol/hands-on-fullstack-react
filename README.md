@@ -22,5 +22,13 @@ In this lesson we will deploy our application to EC2, then we will make our API 
 - [4-full-stack-lambdas/LAMBDA_API.md](4-full-stack-lambdas/LAMBDA_API.md) - Deploy API to Lambdas for scalability
 - [4-full-stack-lambdas/NETLIFY_HOSTING.md](4-full-stack-lambdas/NETLIFY_HOSTING.md) - Deploy front-end to Netlify
 
+### Week 2 Assignment
+Create an application that fulfills the following requirements:
+- Uses MongoDB running on EC2
+- Uses AWS Amplify to run an Express API on AWS Lambdas
+- Uses Netlify for front-end hosting
+
+For help, reference the repository. You are also encouraged to use other resources whenever needed!
+
 ## Week 3
 Week 3 information will be added before the third lesson.
