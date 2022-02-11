@@ -7,22 +7,8 @@
 - Costs less
 - AWS makes it easy to deploy Lambdas using AWS Amplify.
 
-## Prepare codebase
-If you're following along with the tutorial you will have a `front-end` and `back-end` folder. In this section we will combine the two into a single application folder. Bring the contents of the `front-end` folder out to your top level. Your new folder structure should look something like this:
-
-```
-/
-  /back-end
-  /public
-  /src
-  package.json
-  ...etc
-```
-
-Ok now lets get AWS Amplify up and running.
-
 ## Set up
-Install the CLI
+Install the CLI globally
 ```
 npm install -g @aws-amplify/cli
 ```
