@@ -9,6 +9,7 @@ const DB_URL = 'mongodb://127.0.0.1:27017';
 const app = express();
 const port = 5000;
 app.use(express.json());
+
 app.use(cors({
   origin: process.env.client || 'http://localhost:3000',
 }));
