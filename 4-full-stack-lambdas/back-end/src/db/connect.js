@@ -32,16 +32,16 @@ export const connect = async () => {
     dbpass = process.env.dbpass;
   }
 
-  const url = `mongodb://${dbuser}:${dbpass}@3.17.147.6/blog`;
+  const url = `mongodb://${dbuser}:${dbpass}@3.17.9.146/blog`;
   try {
-    console.log(`Connecting to mongo db at ${url}`);
+    console.log(`Connecting to mongo db`);
     const client = await MongoClient.connect(url, {
       useNewUrlParser: true, // new url parser
       useUnifiedTopology: true, // new connection engine
       maxPoolSize: 10 // how many connections can be made
     });
     dbClient = client;
-    console.log(`Connected to mongo db at ${url}`);
+    console.log(`Connected to mongo db`);
     return dbClient;
   } catch(e) {
     console.log(e);
