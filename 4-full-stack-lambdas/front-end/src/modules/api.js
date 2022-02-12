@@ -11,7 +11,7 @@ export const API = async(method, path, payload) => {
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`,
+      Authorization: (await Auth.currentSession()).getIdToken().getJwtToken(),
     },
   };
   if (payload) options.body = JSON.stringify(payload);
