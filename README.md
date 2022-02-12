@@ -30,5 +30,34 @@ Create an application that fulfills the following requirements:
 
 For help, reference the repository. You are also encouraged to use other resources whenever needed!
 
+There was a request to map out the back end deployment flow.
+
+## Deployment flow
+The set up I am showing here is a bit strange, so lets walk through the steps to deploy the back end.
+#### 1. Build back-end with babel:
+```cd back-end && yarn babel src -d lib```
+#### 2. Copy back-end into the Amplify folder:
+```
+cd back-end
+cp -r lib ../front-end/amplify/backend/function/blogapi/src/lib
+cp index.js ../front-end/amplify/backend/function/blogapi/src/index.js
+cp -r node_modules ../front-end/amplify/backend/function/blogapi/src/node_modules
+```
+
+The build command in the back-package.json handles steps 1 and 2.
+```
+"build": "yarn install && babel src -d ../front-end/amplify/backend/function/blogapi/src/lib && cp index.js ../front-end/amplify/backend/function/blogapi/src/index.js&& cp -r node_modules ../front-end/amplify/backend/function/blogapi/src/node_modules",
+```
+#### 3. Deploy Amplify
+```
+cd front-end && amplify push
+```
+
+#### Improving this flow
+Options for improvement include
+- Moving Amplify into the outside folder
+- Moving the back-end folder into the front-end folder
+- Creating an outside makefile to orchestrate both builds
+
 ## Week 3
 Week 3 information will be added before the third lesson.
