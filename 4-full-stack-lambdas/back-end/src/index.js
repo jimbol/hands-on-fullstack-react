@@ -7,8 +7,8 @@ const app = express();
 const port = 5000;
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3000', // switch when pointing towards netlify
-  // origin: process.env.client || 'http://localhost:3000',
+  // origin: 'http://localhost:3000', // switch when pointing towards netlify
+  origin: process.env.client || 'http://localhost:3000',
 }));
 
 

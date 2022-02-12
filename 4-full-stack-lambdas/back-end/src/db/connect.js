@@ -20,6 +20,9 @@ export const connect = async () => {
       .promise();
 
     const { Parameters } = result;
+    console.log('Credention locations');
+    console.log(process.env.dbuser);
+    console.log(process.env.dbpass);
 
     dbuser = Parameters.find(({ Name }) => Name === process.env.dbuser).Value;
     dbpass = Parameters.find(({ Name }) => Name === process.env.dbpass).Value;
@@ -30,7 +33,6 @@ export const connect = async () => {
   }
 
   const url = `mongodb://${dbuser}:${dbpass}@3.17.147.6/blog`;
-  console.log(url);
   try {
     console.log(`Connecting to mongo db at ${url}`);
     const client = await MongoClient.connect(url, {

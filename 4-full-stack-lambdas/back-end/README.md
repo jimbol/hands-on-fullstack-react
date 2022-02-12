@@ -1,22 +1,24 @@
-# Back-end with no database
-This folder implements our Blog api with a mongo database stored on EC2
+## Deployment flow
+The set up I am showing here is a bit strange, so lets walk through the steps to deploy the back end.
+#### 1. Build back-end with babel:
+```cd back-end && yarn babel src -d lib```
+#### 2. Copy back-end into the Amplify folder:
+```
+cd back-end
+cp -r lib ../front-end/amplify/backend/function/blogapi/src/lib
+cp index.js ../front-end/amplify/backend/function/blogapi/src/index.js
+cp -r node_modules ../front-end/amplify/backend/function/blogapi/src/node_modules
+```
+#### 3. Deploy Amplify
+```
+cd front-end && amplify push
+```
 
-## Installation
-### `yarn install`
-You can run `npm install` instead.
-
-### Start from scratch
-First create a new project
-```yarn init .```
-or
-```npm init```
-
-Then install dependencies
-```yarn add express uuid```
-```npm install express uuid```
-
-The `start-dev` script in `package.json` uses Nodemon to keep the local environment running while code changes. Install Nodemon like so:
-```npm install --global nodemon```
+#### Improving this flow
+Options for improvement include
+- Moving Amplify into the outside scope
+- Moving the back-end folder into the front-end folder
+- Creating an outside makefile to orchestrate both builds
 
 ## Practice
 Challenge yourself by creating your own lambdas.
