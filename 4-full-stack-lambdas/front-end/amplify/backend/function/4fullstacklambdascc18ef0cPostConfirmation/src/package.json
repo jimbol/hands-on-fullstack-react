@@ -1,0 +1,9 @@
+{
+  "name": "2-back-end-no-db",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}

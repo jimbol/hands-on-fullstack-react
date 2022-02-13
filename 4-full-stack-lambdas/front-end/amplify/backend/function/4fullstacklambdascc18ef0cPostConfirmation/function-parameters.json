@@ -1,0 +1,21 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "4fullstacklambdascc18ef0c",
+  "functionName": "4fullstacklambdascc18ef0cPostConfirmation",
+  "resourceName": "4fullstacklambdascc18ef0cPostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "/Users/jameshall/.nvm/versions/node/v17.2.0/lib/node_modules/@aws-amplify/cli/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "4fullstacklambdascc18ef0cPostConfirmation",
+  "skipEdit": true,
+  "enableCors": false,
+  "secretNames": [
+    "dbuser",
+    "dbpass"
+  ]
+}

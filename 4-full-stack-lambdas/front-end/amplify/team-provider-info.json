@@ -10,7 +10,8 @@
       "StackName": "amplify-4fullstacklambdas-dev-151705",
       "StackId": "arn:aws:cloudformation:us-east-2:425010903010:stack/amplify-4fullstacklambdas-dev-151705/1d975310-7af7-11ec-83cc-0638028f326c",
       "AmplifyAppId": "d2b1ud59wgz9pu",
-      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-4fullstacklambdas-dev-151705-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-4fullstacklambdas-dev-151705-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-4fullstacklambdas-dev-151705-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "function": {
@@ -20,9 +21,14 @@
         },
         "blogapi": {
           "deploymentBucketName": "amplify-4fullstacklambdas-dev-151705-deployment",
-          "s3Key": "amplify-builds/blogapi-46573167774b72345650-build.zip",
+          "s3Key": "amplify-builds/blogapi-494b6165564a6e6e4864-build.zip",
           "secretsPathAmplifyAppId": "d2b1ud59wgz9pu",
           "client": "https://pedantic-einstein-848446.netlify.app"
+        },
+        "4fullstacklambdascc18ef0cPostConfirmation": {
+          "deploymentBucketName": "amplify-4fullstacklambdas-dev-151705-deployment",
+          "s3Key": "amplify-builds/4fullstacklambdascc18ef0cPostConfirmation-494b6c63457a51453972-build.zip",
+          "secretsPathAmplifyAppId": "d2b1ud59wgz9pu"
         }
       },
       "auth": {

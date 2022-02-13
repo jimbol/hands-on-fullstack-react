@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "yarn install && babel src -d ../front-end/amplify/backend/function/blogapi/src/lib && cp index.js ../front-end/amplify/backend/function/blogapi/src/index.js&& cp -r node_modules ../front-end/amplify/backend/function/blogapi/src/node_modules",
+    "build": "yarn install && babel src -d build",
     "start": "nodemon --es-module-specifier-resolution=node src/index.js",
     "server": "pm2 start \"node --es-module-specifier-resolution=node src/index.js\"",
     "restart": "pm2 restart index",

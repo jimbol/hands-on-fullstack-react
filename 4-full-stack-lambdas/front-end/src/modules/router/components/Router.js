@@ -19,8 +19,12 @@ export const AppRouter = () => {
 
   useEffect(() => {
     const checkUser = async () => {
-      const user = await Auth.currentAuthenticatedUser();
-      if (!user) return;
+      let user;
+      try {
+        user = await Auth.currentAuthenticatedUser();
+      } catch (e) {
+        if (!user) return;
+      }
       const { username } = user;
       dispatch(userActions.signIn({
         username,

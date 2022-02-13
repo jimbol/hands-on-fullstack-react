@@ -1,7 +1,7 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "4fullstacklambdascc18ef0c_identitypool_cc18ef0c",
+    "identityPoolName": "4fullstacklambdasa5e4c589_identitypool_a5e4c589",
     "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "4fullscc18ef0c",
     "userPoolName": "4fullstacklambdascc18ef0c_userpool_cc18ef0c",
@@ -36,10 +36,49 @@
     "sharedId": "cc18ef0c",
     "resourceName": "4fullstacklambdascc18ef0c",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "default",
+    "useDefault": "manual",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "4fullstacklambdascc18ef0cPostConfirmation",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
+    "userPoolGroups": false,
+    "adminQueries": false,
+    "triggers": {
+      "PostConfirmation": [
+        "custom"
+      ]
+    },
+    "hostedUI": false,
+    "authProviders": [],
+    "parentStack": {
+      "Ref": "AWS::StackId"
+    },
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"4fullstacklambdascc18ef0cPostConfirmation\"\n  }\n]",
+    "permissions": [],
+    "thirdPartyAuth": false
   }
 }
