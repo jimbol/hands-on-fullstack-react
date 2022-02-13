@@ -9,7 +9,17 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
-      "dependsOn": []
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "blogdynamodb",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        }
+      ]
     },
     "4fullstacklambdascc18ef0cPostConfirmation": {
       "build": true,
@@ -67,6 +77,12 @@
           "EMAIL"
         ]
       }
+    }
+  },
+  "storage": {
+    "blogdynamodb": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
     }
   }
 }

@@ -8,9 +8,5 @@ export const updatePost = createAsyncThunk(
       post,
     });
 
-    return response.posts.map((post) => {
-      post.id = post._id;
-      delete post._id;
-      return post;
-    });
+    return response.posts;
   });

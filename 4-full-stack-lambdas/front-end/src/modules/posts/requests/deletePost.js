@@ -4,7 +4,7 @@ import { API } from '../../api'
 export const deletePost = createAsyncThunk(
   'posts/deletePost',
   async (postId) => {
-    await API('DELETE', `/post/${postId}`);
+    await API('DEL', `/post/${postId}`);
     return postId;
   }
 );

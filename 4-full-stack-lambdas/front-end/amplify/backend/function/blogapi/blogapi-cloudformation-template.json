@@ -19,6 +19,18 @@
     "secretsPathAmplifyAppId": {
       "Type": "String"
     },
+    "storageblogdynamodbName": {
+      "Type": "String",
+      "Default": "storageblogdynamodbName"
+    },
+    "storageblogdynamodbArn": {
+      "Type": "String",
+      "Default": "storageblogdynamodbArn"
+    },
+    "storageblogdynamodbStreamArn": {
+      "Type": "String",
+      "Default": "storageblogdynamodbStreamArn"
+    },
     "client": {
       "Type": "String"
     }
@@ -141,6 +153,15 @@
                   "allowed_client"
                 ]
               ]
+            },
+            "STORAGE_BLOGDYNAMODB_NAME": {
+              "Ref": "storageblogdynamodbName"
+            },
+            "STORAGE_BLOGDYNAMODB_ARN": {
+              "Ref": "storageblogdynamodbArn"
+            },
+            "STORAGE_BLOGDYNAMODB_STREAMARN": {
+              "Ref": "storageblogdynamodbStreamArn"
             },
             "client": {
               "Ref": "client"
@@ -296,6 +317,58 @@
       "DependsOn": [
         "LambdaExecutionRole"
       ]
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageblogdynamodbArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storageblogdynamodbArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
     }
   },
   "Outputs": {

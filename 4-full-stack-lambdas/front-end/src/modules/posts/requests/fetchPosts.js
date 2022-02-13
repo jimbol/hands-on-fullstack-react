@@ -5,11 +5,7 @@ export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
   async () => {
     const response = await API('GET', '/posts');
-    return response.posts.map((post) => {
-      post.id = post._id;
-      delete post._id;
-      return post;
-    });
+    return response.posts;
   }
 );
 

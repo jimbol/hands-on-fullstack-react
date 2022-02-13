@@ -10,5 +10,15 @@
       "cloudFormationParameterName": "client",
       "environmentVariableName": "client"
     }
-  ]
+  ],
+  "permissions": {
+    "storage": {
+      "blogdynamodb": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  }
 }

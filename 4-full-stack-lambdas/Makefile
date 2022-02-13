@@ -1,6 +1,7 @@
 deploy-backend:
 	make build
 	make build-postconfirmation
+
 	make deploy
 
 build-postconfirmation:
@@ -10,7 +11,8 @@ build-postconfirmation:
 
 build:
 	cd back-end && yarn build
-	cp -r back-end/build front-end/amplify/backend/function/blogapi/src/lib
+	rm -rf front-end/amplify/backend/function/blogapi/src/build
+	cp -r back-end/build front-end/amplify/backend/function/blogapi/src
 	cp back-end/index.js front-end/amplify/backend/function/blogapi/src/index.js
 	cp -r back-end/node_modules front-end/amplify/backend/function/blogapi/src
 

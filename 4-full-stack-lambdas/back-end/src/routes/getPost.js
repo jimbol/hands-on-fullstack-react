@@ -1,4 +1,4 @@
-import * as Post from '../db/postModel';
+import * as Post from '../db/postModelDynamo';
 
 export const getPost = {
   method: 'get',

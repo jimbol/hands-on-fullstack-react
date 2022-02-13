@@ -1,4 +1,4 @@
-import * as Post from '../db/postModel';
+import * as Post from '../db/postModelDynamo';
 import { getUserSub } from './getUserSub';
 
 export const createPost = {

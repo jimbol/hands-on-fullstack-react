@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "yarn install && babel src -d build",
+    "build": "yarn install && rm -rf build && babel src -d build",
     "start": "nodemon --es-module-specifier-resolution=node src/index.js",
     "server": "pm2 start \"node --es-module-specifier-resolution=node src/index.js\"",
     "restart": "pm2 restart index",
