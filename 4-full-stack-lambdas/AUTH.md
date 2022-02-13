@@ -244,3 +244,4 @@ if (post.owner && post.owner !== userSub) {
 }
 ```
 
+[Next Steps](POST_CONFIRMATION.md) - Create user records with post confirmation hook
