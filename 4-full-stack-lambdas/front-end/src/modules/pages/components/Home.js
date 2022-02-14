@@ -27,7 +27,7 @@ export const Home = () => {
   if (loading) {
     return (
       <div>
-        <Typography variant="h1">Latest Questions</Typography>
+        <Typography variant="h1">Latest Posts</Typography>
         <Typography variant="h4">Loading...</Typography>
       </div>
     );

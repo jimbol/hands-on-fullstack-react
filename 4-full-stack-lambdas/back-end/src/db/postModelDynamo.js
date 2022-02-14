@@ -1,10 +1,11 @@
 import AWS from 'aws-sdk';
 import { v4 as uuid } from 'uuid';
 
-const docClient = new AWS.DynamoDB.DocumentClient();
 const tableName = process.env.STORAGE_BLOGDYNAMODB_NAME;
 
 export const insertOne = async (post) => {
+  const docClient = new AWS.DynamoDB.DocumentClient();
+
   const id = uuid();
   post.id = id;
 
@@ -16,13 +17,12 @@ export const insertOne = async (post) => {
   await docClient.put(params).promise();
   console.log('inserted:', id);
 
-  const posts = await docClient.scan(params).promise();
-  console.log(posts);
-
   return { insertedId: id };
 }
 
 export const getAll = async () => {
+  const docClient = new AWS.DynamoDB.DocumentClient();
+
   const params = {
     TableName: tableName,
   };
@@ -34,7 +34,8 @@ export const getAll = async () => {
 };
 
 export const getOne = async (postId) => {
-  console.log('GET ONE');
+  const docClient = new AWS.DynamoDB.DocumentClient();
+
   const params = {
     TableName: tableName,
     Key: {
@@ -48,6 +49,8 @@ export const getOne = async (postId) => {
 };
 
 export const deleteOne = async (postId) => {
+  const docClient = new AWS.DynamoDB.DocumentClient();
+
   const params = {
     TableName: tableName,
     Key: {
@@ -59,6 +62,8 @@ export const deleteOne = async (postId) => {
 };
 
 export const updateOne = async (postId, updates) => {
+  const docClient = new AWS.DynamoDB.DocumentClient();
+
   const params = {
     TableName: tableName,
     Key:{

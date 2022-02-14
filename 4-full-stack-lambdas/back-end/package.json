@@ -9,7 +9,8 @@
     "start": "nodemon --es-module-specifier-resolution=node src/index.js",
     "server": "pm2 start \"node --es-module-specifier-resolution=node src/index.js\"",
     "restart": "pm2 restart index",
-    "kill": "pm2 delete index"
+    "kill": "pm2 delete index",
+    "test": "jest"
   },
   "dependencies": {
     "aws-sdk": "^2.1064.0",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.10",
-    "@babel/preset-env": "^7.16.11"
+    "@babel/preset-env": "^7.16.11",
+    "jest": "^27.5.1"
   }
 }

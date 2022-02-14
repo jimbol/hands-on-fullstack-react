@@ -1,4 +1,3 @@
-import '@aws-amplify/ui-react/styles.css';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { useDispatch } from 'react-redux';
 

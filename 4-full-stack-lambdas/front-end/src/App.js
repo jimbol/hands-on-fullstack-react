@@ -1,5 +1,3 @@
-import '@aws-amplify/ui-react/styles.css';
-
 import Amplify from 'aws-amplify';
 import { Container } from '@mui/material';
 import { BrowserRouter } from "react-router-dom";
