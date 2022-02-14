@@ -27,9 +27,11 @@ jobs:
         working-directory: 4-full-stack-lambdas/back-end
       - run: yarn test
         working-directory: 4-full-stack-lambdas/back-end
+
       - name: deploy
         uses: ambientlight/amplify-cli-action@0.3.0
         with:
+          working-directory: 4-full-stack-lambdas/front-end
           amplify_command: publish
           amplify_env: dev
         env:
