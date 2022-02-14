@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import App from '../src/App';
-
 import { API } from 'aws-amplify';
+import App from '../App';
+
 test('That the title is rendered', () => {
   render(<App />);
   const logoElement = screen.getByText('The Nerd Blog');
