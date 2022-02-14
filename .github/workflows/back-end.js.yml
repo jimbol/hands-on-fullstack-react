@@ -28,24 +28,3 @@ jobs:
       - run: yarn test
         working-directory: 4-full-stack-lambdas/back-end
 
-      - name: configure amplify
-        uses: ambientlight/amplify-cli-action@0.3.0
-        with:
-          working-directory: 4-full-stack-lambdas/front-end
-          amplify_command: configure
-          amplify_env: dev
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: us-east-1
-
-      - name: deploy
-        uses: ambientlight/amplify-cli-action@0.3.0
-        with:
-          working-directory: 4-full-stack-lambdas/front-end
-          amplify_command: publish
-          amplify_env: dev
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: us-east-1
