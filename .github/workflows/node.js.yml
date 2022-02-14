@@ -25,6 +25,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
-        working-directory: front-end
+        working-directory: 4-full-stack-lambdas/front-end
       - run: yarn test
-        working-directory: front-end
+        working-directory: 4-full-stack-lambdas/front-end
