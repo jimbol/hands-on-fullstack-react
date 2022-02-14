@@ -31,6 +31,7 @@ jobs:
       - name: configure amplify
         uses: ambientlight/amplify-cli-action@0.3.0
         with:
+          working-directory: 4-full-stack-lambdas/front-end
           amplify_command: configure
           amplify_env: dev
         env:
