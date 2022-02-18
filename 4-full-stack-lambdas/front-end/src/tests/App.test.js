@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { API } from 'aws-amplify';
 import App from '../App';
 
-test('That the title is rendered', () => {
+test('The title is rendered', () => {
   render(<App />);
   const logoElement = screen.getByText('The Nerd Blog');
   expect(logoElement).toBeInTheDocument();
@@ -23,7 +23,6 @@ test('Posts are added to the page', () => {
   render(<App />);
   setTimeout(() => {
     const logoElement = screen.getByText('Nice Post');
-
     expect(logoElement).toBeInTheDocument();
   }, 0);
 });

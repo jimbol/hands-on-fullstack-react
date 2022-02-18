@@ -17,10 +17,10 @@ For help, reference the repository. You are also encouraged to use other resourc
 ## Week 2
 In this lesson we will deploy our application to EC2, then we will make our API scalable using Lambdas, API Gateway, and AWS Amplify, and finally we will deploy the front-end to Netlify.
 
-- [3-full-stack](3-full-stack) - Prepare application to run in EC2
-- [3-full-stack/RUN_ON_EC2.md](3-full-stack/RUN_ON_EC2.md) - Deploy application to EC2
-- [4-full-stack-lambdas/LAMBDA_API.md](4-full-stack-lambdas/LAMBDA_API.md) - Deploy API to Lambdas for scalability
-- [4-full-stack-lambdas/NETLIFY_HOSTING.md](4-full-stack-lambdas/NETLIFY_HOSTING.md) - Deploy front-end to Netlify
+- [3-full-stack](/3-full-stack) - Prepare application to run in EC2
+- [3-full-stack/RUN_ON_EC2.md](/3-full-stack/RUN_ON_EC2.md) - Deploy application to EC2
+- [4-full-stack-lambdas/LAMBDA_API.md](/4-full-stack-lambdas/LAMBDA_API.md) - Deploy API to Lambdas for scalability
+- [4-full-stack-lambdas/NETLIFY_HOSTING.md](/4-full-stack-lambdas/NETLIFY_HOSTING.md) - Deploy front-end to Netlify
 
 ### Week 2 Assignment
 Create an application that fulfills the following requirements:
@@ -60,4 +60,10 @@ Options for improvement include
 - Creating an outside makefile to orchestrate both builds
 
 ## Week 3
-Week 3 information will be added before the third lesson.
+In this lesson we will add authentication, move to a scalable database, add tests, and continuous integration.
+
+- [4-full-stack-lambdas/ADD_AUTH.md](/4-full-stack-lambdas/ADD_AUTH.md) - Add auth to the front- and back-end.
+- [4-full-stack-lambdas/DYNAMO_DB.md]](/4-full-stack-lambdas/DYNAMO_DB.md) - Learn about DynamoDB and update our application to use it.
+- [4-full-stack-lambdas/TESTING.md](/4-full-stack-lambdas/TESTING.md) - Add basic front- and back-end tests.
+- [Continuous integration](../.github/workflows) - Run tests in Github Actions.
+
