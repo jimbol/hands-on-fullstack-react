@@ -6,6 +6,7 @@ Let's say we want to add a user record when someone finishes creating a new acco
 To start we call:
 ```amplify update auth```
 
+```
 Select `Walkthrough all the auth configurations`
 Select `User Sign-Up, Sign-In, connected with AWS IAM controls (Enables per-user Storage features for images or other content, Analytics, and more)`
 *Enter a name for your identity pool.* Select a name
@@ -24,6 +25,7 @@ Set up email verification.
 Select `Post Confirmation` with spacebar, then press enter. This get triggered after a user is confirmed.
 Select `Create your own module` with spacebar, then press enter. This will add a function.
 *Do you want to edit your custom function now? *`Y`
+```
 
 You'll get access to the lambda code. We'll have to set up our Babel build process to really get this running. Add a new file under back-end/src called `postConfirmation.js`.
 
