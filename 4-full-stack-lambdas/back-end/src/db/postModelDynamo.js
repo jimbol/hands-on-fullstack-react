@@ -15,7 +15,6 @@ export const insertOne = async (post) => {
   };
 
   await docClient.put(params).promise();
-  console.log('inserted:', id);
 
   return { insertedId: id };
 }
@@ -27,9 +26,7 @@ export const getAll = async () => {
     TableName: tableName,
   };
 
-  console.log('about to getAll posts');
   const posts = await docClient.scan(params).promise();
-  console.log(posts);
   return posts.Items;
 };
 

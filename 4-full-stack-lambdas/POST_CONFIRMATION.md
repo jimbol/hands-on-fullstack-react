@@ -72,3 +72,5 @@ Note that your path will be different depending on your project.
 We have to add the dbuser and dbpass secrets too.
 
 Once all that is set, deploy and create a new user to test. A user record should be created after confirming the new account.
+
+[Next Steps](DYNAMO_DB.md) - Switch to Dynamo DB

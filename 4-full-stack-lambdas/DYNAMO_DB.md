@@ -166,3 +166,5 @@ export const updateOne = async (postId, updates) => {
 ```
 
 There are a couple places on the client-side where we are expecting the `_id` that comes back from MongoDB. So go back and convert those to expecting `id` instead.
+
+[Next Steps](TESTING.md) - Set up testing

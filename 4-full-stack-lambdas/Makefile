@@ -1,7 +1,6 @@
 deploy-backend:
 	make build
 	make build-postconfirmation
-
 	make deploy
 
 build-postconfirmation:
