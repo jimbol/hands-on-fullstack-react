@@ -62,8 +62,8 @@ Options for improvement include
 ## Week 3
 In this lesson we will add authentication, move to a scalable database, add tests, and continuous integration.
 
-- [4-full-stack-lambdas/ADD_AUTH.md](/4-full-stack-lambdas/ADD_AUTH.md) - Add auth to the front- and back-end.
+- [4-full-stack-lambdas/AUTH.md](/4-full-stack-lambdas/AUTH.md) - Add auth to the front- and back-end.
 - [4-full-stack-lambdas/DYNAMO_DB.md](/4-full-stack-lambdas/DYNAMO_DB.md) - Learn about DynamoDB and update our application to use it.
 - [4-full-stack-lambdas/TESTING.md](/4-full-stack-lambdas/TESTING.md) - Add basic front- and back-end tests.
-- [Continuous integration](../.github/workflows) - Run tests in Github Actions.
+- [Continuous integration](.github/workflows) - Run tests in Github Actions.
 
